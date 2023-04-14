@@ -1,24 +1,29 @@
 import logo from './logo.svg';
-import './App.css';
+import { Container, CssBaseline, StyledEngineProvider } from '@mui/material';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import DashBoard from './screens/DashBoard';
+import routers from './router'
 
 function App() {
+  // === LOGIC
+  const getRouters = (allRouters) =>
+    allRouters.map((router) => {
+
+      if (router.router != null) {
+
+        return <Route path={router.router} element={router.component} />
+      }
+      return null;
+    })
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <StyledEngineProvider injectFirst>
+      <CssBaseline />
+      <Routes>
+        {getRouters(routers)}
+        <Route path='*' element={<Navigate to={'/dashboard'} replace />} />
+      </Routes>
+    </StyledEngineProvider>
   );
 }
 

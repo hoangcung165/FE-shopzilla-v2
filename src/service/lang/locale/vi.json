@@ -1,0 +1,19 @@
+{
+    "login_title": "Đăng Nhập",
+    "username_text": "Tài Khoản",
+    "email_text": "Email",
+    "password_text": "Mật Khẩu",
+    "remember_text": "Ghi Nhớ Đăng Nhập",
+    "fogot_pass_text": "Quên Mật Khẩu",
+    "new_member_text": "Thành Viên Mới",
+    "signup_text": "Đăng Ký",
+    "username_email_label": "Tài Khoản/Email",
+    "register_title": "Đăng Ký",
+    "firstName_label": "Tên",
+    "lastName_label": "Họ",
+    "rePassword_label": "Nhập Lại Mật Khẩu",
+    "back_login_label": "Trở Về Trang Đăng Nhập",
+    "login_btn_label": "Đăng Nhập",
+    "register_btn_label": "Đăng Ký",
+    "USER_400": "Người Dùng Đã Tồn Tại"
+}

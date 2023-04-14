@@ -1,0 +1,19 @@
+{
+    "login_title": "Login",
+    "username_text": "Username",
+    "email_text": "Email",
+    "password_text": "Password",
+    "remember_text": "Remember Me",
+    "fogot_pass_text": "Forgot Password",
+    "new_member_text": "New Member",
+    "signup_text": "Sign Up",
+    "username_email_label": "Username/Email",
+    "register_title": "Register",
+    "firstName_label": "First Name",
+    "lastName_label": "Last Name",
+    "rePassword_label": "Re-Password",
+    "back_login_label": "Back to Login",
+    "login_btn_label": "Login",
+    "register_btn_label": "Register",
+    "USER_400": "User Exist"
+}
