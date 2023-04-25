@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from '../Login/style'
 import { Box, Button, Checkbox, CircularProgress, Container, FormControl, Grid, Icon, IconButton, Input, InputAdornment, InputLabel, TextField, Typography } from '@mui/material';
-import { Colors } from '../../common/color'
+import { Colors } from '../../utils/common/color'
 import { useTranslation } from 'react-i18next';
 import i18n from '../../service/lang/i18n';
 import i18nA from "i18next";
@@ -11,19 +11,40 @@ import LockIcon from '@mui/icons-material/Lock';
 import { useState } from 'react';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { useDispatch } from 'react-redux';
+import { USER_LOGIN_ACTION } from '../../redux/type';
+import { Helper } from '../../utils/helpers';
+
 
 const Login = () => {
     // === LOGIC ===
     const className = styles()
     const { t } = useTranslation()
+    const dispacth = useDispatch();
 
     const [userName, setUserName] = useState(null)
     const [password, setPassword] = useState(null)
     const [showPassword, setShowPassword] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const onHandleLogin = () => {
         //TODO validation
         console.log(userName, password)
+
+        let params = {
+            username: userName, password
+        }
+        dispacth({
+            type: USER_LOGIN_ACTION,
+            payload: {
+                params,
+                callback: (success, res) => {
+                    console.log(res)
+                }
+            }
+        })
+
+
     }
 
 

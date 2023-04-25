@@ -1,5 +1,5 @@
 import { makeStyles } from "@mui/styles";
-import { Colors } from '../../common/color'
+import { Colors } from '../../utils/common/color'
 
 export default makeStyles(() => {
     return {
