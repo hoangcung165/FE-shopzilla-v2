@@ -9,8 +9,10 @@ const Api = axios.create({
 Api.interceptors.request.use(
     (request) => {
         let token = Helper.getDataStorage(Key.dataToken);
-        console.log("TOKEN", token)
-        request.headers.Authorization = `Bearer ${token?.accessToken}`;
+        if (token) {
+            request.headers.Authorization = `Bearer ${token?.accessToken}`;
+        }
+
         return request;
     },
     (error) => {

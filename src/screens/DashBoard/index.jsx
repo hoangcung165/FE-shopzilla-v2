@@ -5,13 +5,10 @@ import React from 'react'
 const DashBoard = () => {
     // === LOGIC ===
 
-
     // === RENDER ===
     return (
 
-        <Box>
-
-        </Box>
+        <div>DashBoard</div>
     )
 }
 

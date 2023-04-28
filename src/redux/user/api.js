@@ -10,7 +10,11 @@ const errorBadRequestHandler = (error) => {
 }
 export const apiLogin = async (params) => {
     try {
-        let res = await Api.post(routerApi.user.login, params)
+        let res = await Api.post(routerApi.user.login, params, {
+            headers: {
+                Authorization: '',
+            }
+        })
         // SYSTEM_CONFIG.devMode ?? console.log("=== Api Register ===", res)
         return res;
     } catch (error) {

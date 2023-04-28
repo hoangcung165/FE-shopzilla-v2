@@ -6,13 +6,15 @@ const routers = [
         name: "DashBoard",
         key: "dashboard",
         router: "/dashboard",
-        component: <DashBoard />
+        component: <DashBoard />,
+        useCommonLayout: true
     },
     {
         name: "Login",
         key: "login",
         router: "/login",
-        component: <Login />
+        component: <Login />,
+        useCommonLayout: false
     }
 ]
 

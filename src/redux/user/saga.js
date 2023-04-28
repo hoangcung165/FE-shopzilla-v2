@@ -31,14 +31,15 @@ function* getUserDetail(action) {
         if (res.status === 200) {
             //update user state
             yield put({ type: USER_UPDATE_ACTION, payload: res.data })
-            call(true, res.data)
+            console.log("DETAIL", res)
+            callback(true, res.data)
         }
     } catch (error) {
-        call(false, null)
+        callback(false, null)
     }
 }
 
 export function* userSaga() {
-    yield takeEvery(USER_LOGIN_ACTION, login)
-    yield takeEvery(USER_DETAIL_ACTION, getUserDetail)
+    yield takeEvery(USER_LOGIN_ACTION, login);
+    yield takeEvery(USER_DETAIL_ACTION, getUserDetail);
 }
