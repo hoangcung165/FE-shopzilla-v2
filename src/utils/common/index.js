@@ -5,6 +5,10 @@ export const SYSTEM_CONFIG = {
     apiVersion: 'v1'
 }
 
+export const drawerWidth = 240
+
+
+
 export const BASE_URL = SYSTEM_CONFIG.devMode ? SYSTEM_CONFIG.devUrl : SYSTEM_CONFIG.productionUrl
 
 export const Key = {

@@ -1,12 +1,12 @@
 import logo from './logo.svg';
-import { Container, CssBaseline, Grid, StyledEngineProvider } from '@mui/material';
+import { Box, Container, CssBaseline, Grid, StyledEngineProvider } from '@mui/material';
 import { Navigate, Route, Routes, useLocation, useNavigate, Outlet } from 'react-router-dom';
 import DashBoard from './screens/DashBoard';
 import routers from './router'
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Helper } from './utils/helpers';
-import { Key } from './utils/common';
+import { Key, drawerWidth } from './utils/common';
 import { USER_DETAIL_ACTION, USER_LOGIN_SUCCESS_ACTION } from './redux/type';
 import Header from './components/Header';
 import SideNav from './components/SideNav';
@@ -18,6 +18,7 @@ function App() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const location = useLocation();
+  const [openNav, setOpenNav] = useState(false);
 
   console.log("APP", token)
   // === LOGIC ===
@@ -69,32 +70,19 @@ function App() {
     getLocalData()
   }, [])
 
+
+
   // === UI RENDER ===
   const CommonLayout = () => {
     return (
-      <Grid container direction={'column'} spacing={'5'}>
-        <Grid item>
-          <Header />
-        </Grid>
-        <Grid item>
-          <Container maxWidth='xl'>
-            <Grid container>
-
-              <Grid item sx={{ display: { sm: 'block', xs: 'none' } }} sm={2}>
-                <SideNav />
-              </Grid>
-
-
-              <Grid item sm={10} >
-                <Outlet />
-              </Grid>
-            </Grid>
-          </Container>
-        </Grid>
-        <Grid item>
-          <Footer />
-        </Grid>
-      </Grid>
+      <Box display={'flex'}>
+          <CssBaseline/>
+          <Header/>
+          <SideNav />
+          <Box component={'main'} flexGrow={1} sx={{ width: { sm: `calc(100% - ${drawerWidth}px)`, marginTop: 64 } }}>
+              <Outlet/>
+          </Box>
+      </Box>
     )
   }
 
@@ -102,20 +90,10 @@ function App() {
     <StyledEngineProvider injectFirst>
       <CssBaseline />
       <Routes>
-        {/* Custom layout */}
         {getRouters(routers, false)}
-
-        {/* Conmmon Layout */}
-
         <Route element={<CommonLayout />}>
-
           {getRouters(routers, true)}
-
         </Route>
-        {/* <Route element={<CommonLayout />}>
-          <Route path='/' element={<DashBoard />} />
-          <Route path='/dashboard' element={<DashBoard />} />
-        </Route> */}
         <Route path='*' element={<Navigate to={'/login'} replace />} />
       </Routes>
     </StyledEngineProvider>
