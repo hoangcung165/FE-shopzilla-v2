@@ -16,15 +16,15 @@
     "login_btn_label": "Đăng Nhập",
     "register_btn_label": "Đăng Ký",
     "USER_400": "Người Dùng Đã Tồn Tại",
-
-
     "dashboard": "Dashboard",
-    "staff_manager" : "Quản Lý Nhân Viên",
+    "staff_manager": "Quản Lý Nhân Viên",
+    "store_manager": "Quản Lý Cửa Hàng",
     "customer_manager": "Quản Lý Khách Hàng",
     "porject_manager": "Quản Lý Sản Phẩm",
     "bill_manager": "Quản Lý Hóa Đơn",
     "brand_manager": "Quản Lý Thương Hiệu",
     "news_manager": "Quản Lý Tin Tức",
     "account_menu_profile": "Hồ Sơ",
-    "account_menu_logout": "Đăng Xuất"
+    "account_menu_logout": "Đăng Xuất",
+    "search_label": "Tìm Kiếm"
 }

@@ -2,10 +2,11 @@ export const SYSTEM_CONFIG = {
     devMode: true,
     devUrl: 'http://localhost:8080',
     productionUrl: window.origin,
-    apiVersion: 'v1'
+    apiVersion: 'v1',
+    pH: 16
 }
 
-export const drawerWidth = 240
+export const drawerWidth = 260
 
 
 

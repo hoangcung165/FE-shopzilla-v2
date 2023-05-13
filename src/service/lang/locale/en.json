@@ -16,18 +16,15 @@
     "login_btn_label": "Login",
     "register_btn_label": "Register",
     "USER_400": "User Exist",
-
     "dashboard": "Dashboard",
-    "staff_manager" : "Staff Manager",
+    "staff_manager": "Staff Manager",
+    "store_manager": "Store Manager",
     "customer_manager": "Customer Manager",
     "porject_manager": "Project Manager",
     "bill_manager": "Bill Manager",
     "brand_manager": "Brand Manager",
     "news_manager": "New Manager",
     "account_menu_profile": "Profile",
-    "account_menu_logout": "Logout"
-
-
-    
-
+    "account_menu_logout": "Logout",
+    "search_label": "Search"
 }

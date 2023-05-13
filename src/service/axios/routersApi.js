@@ -5,7 +5,12 @@ const prefixApi = `/api/${SYSTEM_CONFIG.apiVersion}`
 const routerApi = {
     user: {
         login: `/auth/login`,
-        getDetail: `${prefixApi}/user/detail`
+        getDetail: `${prefixApi}/user/detail`,
+        getStaff: `${prefixApi}/user`
+    },
+    store: {
+        listStore: `${prefixApi}/store`,
+        createStore: `${prefixApi}/store/create`
     }
 }
 
