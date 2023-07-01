@@ -9,7 +9,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import SearchIcon from '@mui/icons-material/Search';
 
 const CTable = ({
-    data,
+    dataTable = [],
     rowPerPages = Configs.rowPerPage,
     totalPage = Configs.pageSize,
     page = 1,
@@ -21,22 +21,13 @@ const CTable = ({
 
 
 
-    //=== INSTANCE ===
-    const dataTable = {
-        headers: [
-            { name: 'Name', id: 'name', align: 'center', isCustome: false },
-            { name: 'Email', id: 'email', align: 'center', isCustome: false },
-            { name: 'UserName', id: 'username', align: 'center', isCustome: false },
-        ],
-        rows: [
-            { name: 'Cung', email: 'hoangcung@gmail.com', username: 'cung' }
-        ]
-    }
 
     const { t } = useTranslation()
     const classes = styles()
 
 
+
+    // === RENDER ===
     return (
         <Paper>
             <Box>
@@ -47,13 +38,10 @@ const CTable = ({
                     <Grid item container direction={'row'}>
                         <Grid item container spacing={2} xs={6} alignItems={'center'}>
                             <Grid item>
-                                <Typography className={classes.labelSearch} variant='h6'>{t('search_label')}</Typography>
-                            </Grid>
-                            <Grid item>
                                 <InputBase sx={{ ml: 1, flex: 1 }}
                                     className={classes.btnSearch}
                                     placeholder='Search'
-                                    inputProps={{ 'aria-label': 'search google maps' }}
+                                    inputProps={{ 'aria-label': 'search' }}
                                     endAdornment={
                                         <InputAdornment position='end'>
                                             <IconButton type='button'>
@@ -103,8 +91,14 @@ const CTable = ({
                                                 key={`cell_${headerIndex}`}
                                                 component={'td'}
                                                 align={header.align}
+                                                className={classes.conCell}
                                             >
-                                                <Typography>{row[header.id]}</Typography>
+                                                {header.isCustome == true ?
+                                                    <Box>
+                                                        {header.cell({ ...props, cell: row, index: headerIndex })}
+                                                    </Box>
+                                                    :
+                                                    <Typography>{row[header.id]}</Typography>}
                                             </Box>
                                         )
                                     })}

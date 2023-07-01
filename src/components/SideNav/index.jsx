@@ -11,6 +11,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './style';
 import { Colors } from '../../utils/common/color';
 import StoreIcon from '@mui/icons-material/Store';
+import { Assets } from '../../config'
 
 const SideNav = (
     {
@@ -40,13 +41,12 @@ const SideNav = (
         nagative(menu.url)
     }
 
-    console.log(location)
-
     // === RENDER HANDLE ===
     const renderMenu = () => {
         return (
             <Box className={classes.conNavContainer}>
                 <Toolbar>
+                    <Box className={classes.imageLogo} component={'img'} src={Assets.logoNoBg} />
                 </Toolbar>
                 {/* <Divider /> */}
                 <List >
@@ -54,12 +54,12 @@ const SideNav = (
                         let active = item.url === location.pathname;
                         return (
                             <ListItemButton key={`menu_${index}`}
-                                className={`${classes.conMenuIcon}`}
+                                className={`${classes.conMenuIcon} ${active ? classes.textMenuActive : ''}`}
                                 placeholder={`${item.placeHolder}`}
                                 onClick={() => onClickMenu(item)}
                             >
-                                <ListItemIcon >
-                                    <Avatar variant="rounded" className={`${active ? classes.conMenuIconActive : ''}`}>{item.icon}</Avatar>
+                                <ListItemIcon className={`${classes.textMenu} ${active ? classes.textMenuActive : ''}`} >
+                                    {item.icon}
                                 </ListItemIcon>
                                 <ListItemText
                                     sx={{ fontSize: '14px important' }}

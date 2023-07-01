@@ -6,7 +6,7 @@ export const Colors = {
     // ==== SYSTEM COLOR SETTING ====
     __bs_blue: "#63b3ed",
     __bs_indigo: "#596cff",
-    __bs_purple: "#6f42c1",
+    __bs_purple: "#b66dff",
     __bs_pink: "#d63384",
     __bs_red: "#f56565",
     __bs_orange: "#fd7e14",
@@ -25,7 +25,7 @@ export const Colors = {
     __bs_gray_700: "#495057",
     __bs_gray_800: "#343a40",
     __bs_gray_900: "#212529",
-    __bs_primary: "#cb0c9f",
+    __bs_primary: "#b66dff",
     __bs_secondary: "#8392ab",
     __bs_success: "#82d616",
     __bs_info: "#17c1e8",

@@ -31,7 +31,6 @@ function* getUserDetail(action) {
         if (res.status === 200) {
             //update user state
             yield put({ type: USER_UPDATE_ACTION, payload: res.data })
-            console.log("DETAIL", res)
             callback(true, res.data)
         }
     } catch (error) {

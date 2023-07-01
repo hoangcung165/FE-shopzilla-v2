@@ -11,7 +11,6 @@ const setDataStorage = (key, data) => {
 const getDataStorage = (key) => {
     try {
         let res = localStorage.getItem(key)
-        console.log(res)
         if (res && res != '') {
             res = JSON.parse(res)
             return res

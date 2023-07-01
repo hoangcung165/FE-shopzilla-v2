@@ -8,6 +8,10 @@ export default makeStyles(() => {
             padding: '1rem',
             padding: SYSTEM_CONFIG.pH
         },
+        conCell: {
+            padding: 16,
+            borderBottom: `1px solid ${Colors.__bs_gray_500}`
+        },
         labelSearch: {
             fontWeight: 500,
             lineHeight: 1.2

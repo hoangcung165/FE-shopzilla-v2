@@ -35,7 +35,7 @@ const AddStoreModal = (
             payload: {
                 params,
                 callback: (success, res) => {
-                    console.log(res)
+
                 }
             }
         })

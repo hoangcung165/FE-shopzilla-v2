@@ -20,11 +20,9 @@ function App() {
   const location = useLocation();
   const [openNav, setOpenNav] = useState(false);
 
-  console.log("APP", token)
   // === LOGIC ===
   const getRouters = (allRouters, useCommonLayout) =>
     allRouters.map((router) => {
-      console.log("T", useCommonLayout)
       if (router.router != null && router.useCommonLayout === useCommonLayout) {
 
         return <Route path={router.router} element={router.component} />
@@ -38,7 +36,6 @@ function App() {
       type: USER_DETAIL_ACTION,
       payload: {
         callback: (success, res) => {
-          console.log(success)
           if (success) {
             navigate((location.pathname === '/login' || location.pathname === '/' || location.pathname === '/register' || location.pathname === '/forgot-password') ? '/dashboard' : location.pathname);
           }
@@ -76,12 +73,12 @@ function App() {
   const CommonLayout = () => {
     return (
       <Box display={'flex'}>
-          <CssBaseline/>
-          <Header/>
-          <SideNav />
-          <Box component={'main'} flexGrow={1} sx={{ width: { sm: `calc(100% - ${drawerWidth}px)`, marginTop: 64 } }}>
-              <Outlet/>
-          </Box>
+        <CssBaseline />
+        <Header />
+        <SideNav />
+        <Box component={'main'} flexGrow={1} sx={{ width: { sm: `calc(100% - ${drawerWidth}px)`, marginTop: 64 } }}>
+          <Outlet />
+        </Box>
       </Box>
     )
   }

@@ -19,6 +19,7 @@ export default makeStyles(() => {
         },
         conFieldInput: {
             minWidth: 600,
+            borderRadius: 5
         },
         txtLabelInput: {
             fontWeight: 600
