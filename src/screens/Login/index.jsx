@@ -29,7 +29,6 @@ const Login = () => {
 
     const onHandleLogin = () => {
         //TODO validation
-        console.log(userName, password)
 
         let params = {
             username: userName, password

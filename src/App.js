@@ -22,10 +22,10 @@ function App() {
 
   // === LOGIC ===
   const getRouters = (allRouters, useCommonLayout) =>
-    allRouters.map((router) => {
+    allRouters.map((router, index) => {
       if (router.router != null && router.useCommonLayout === useCommonLayout) {
 
-        return <Route path={router.router} element={router.component} />
+        return <Route key={router.key} path={router.router} element={router.component} />
       }
       return null;
     })
@@ -57,6 +57,12 @@ function App() {
       // setLoading(false);
     }
   }
+
+  const handleOpenMenu = () => {
+    console.log(openNav)
+    setOpenNav(!openNav);
+  }
+
   useEffect(() => {
     if (token) {
       initUserLogin();
@@ -74,8 +80,8 @@ function App() {
     return (
       <Box display={'flex'}>
         <CssBaseline />
-        <Header />
-        <SideNav />
+        <Header handleOpenMenu={handleOpenMenu} />
+        <SideNav open={openNav} />
         <Box component={'main'} flexGrow={1} sx={{ width: { sm: `calc(100% - ${drawerWidth}px)`, marginTop: 64 } }}>
           <Outlet />
         </Box>

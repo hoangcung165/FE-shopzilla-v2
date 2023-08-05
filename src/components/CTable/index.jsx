@@ -16,53 +16,22 @@ const CTable = ({
     onLoadMore = () => { },
     tableTitle = 'Table Title',
     action = {},
+    header = () => { },
     ...props
 }) => {
-
-
-
 
     const { t } = useTranslation()
     const classes = styles()
 
-
+    const handleChangePage = (event, newPage) => {
+        onLoadMore(newPage + 1)
+    }
 
     // === RENDER ===
     return (
         <Paper>
             <Box>
-                <Grid container spacing={3} direction={'column'} className={classes.conHeaderTable}>
-                    <Grid item>
-                        <Typography variant='h4'>{tableTitle}</Typography>
-                    </Grid>
-                    <Grid item container direction={'row'}>
-                        <Grid item container spacing={2} xs={6} alignItems={'center'}>
-                            <Grid item>
-                                <InputBase sx={{ ml: 1, flex: 1 }}
-                                    className={classes.btnSearch}
-                                    placeholder='Search'
-                                    inputProps={{ 'aria-label': 'search' }}
-                                    endAdornment={
-                                        <InputAdornment position='end'>
-                                            <IconButton type='button'>
-                                                <SearchIcon />
-                                            </IconButton>
-                                        </InputAdornment>
-                                    } />
-                            </Grid>
-                        </Grid>
-                        <Grid item xs={6} display={'flex'} flexDirection={'row'} justifyContent={'flex-end'}>
-                            {action.addNew ? (
-                                <Button className={classes.btnAction} onClick={action.addNew}>
-                                    <AddIcon />
-                                </Button>) : <></>}
-                            <Button className={classes.btnAction}>
-                                <ExpandMoreIcon />
-                            </Button>
-
-                        </Grid>
-                    </Grid>
-                </Grid>
+                {header()}
             </Box>
             <TableContainer>
                 <Table>
@@ -114,7 +83,7 @@ const CTable = ({
                 count={totalPage}
                 rowsPerPage={rowPerPages}
                 page={page - 1}
-                onPageChange={onLoadMore}
+                onPageChange={handleChangePage}
             />
         </Paper>
     )

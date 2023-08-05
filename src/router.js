@@ -1,5 +1,6 @@
 import DashBoard from "./screens/DashBoard";
 import Login from "./screens/Login";
+import ProductCategory from "./screens/Product/Category";
 import StaffManager from "./screens/StaffManager";
 import Store from "./screens/Store";
 import UserProfile from "./screens/UserProfile";
@@ -40,6 +41,13 @@ const routers = [
         component: <Store />,
         useCommonLayout: true
     },
+    {
+        name: "Product",
+        key: "Product",
+        router: "/product/category",
+        component: <ProductCategory />,
+        useCommonLayout: true
+    }
 
 ]
 

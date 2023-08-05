@@ -1,4 +1,4 @@
-import { Box, Button, Grid, TableCell, Typography } from '@mui/material'
+import { Box, Button, Chip, Grid, IconButton, InputAdornment, InputBase, TableCell, Tooltip, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import CTable from '../../components/CTable'
 import styles from './style'
@@ -8,6 +8,12 @@ import { LIST_STORE_ACTION } from '../../redux/type'
 import AddStoreModal from './Add/AddStoreModal'
 import CLoading from '../../components/CLoading'
 import { Colors } from '../../utils/common/color'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBan, faCircleInfo, faInfo } from '@fortawesome/free-solid-svg-icons'
+import AddIcon from '@mui/icons-material/Add';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import SearchIcon from '@mui/icons-material/Search';
 
 const Store = () => {
     // === INSTANCE ==
@@ -36,15 +42,15 @@ const Store = () => {
     const defaultStatusColor = [
         {
             key: 'ACTIVE',
-            color: `${Colors.__bs_success}`
+            color: classes.activeStatus
         }
     ]
 
 
     // === LOGIC ===
-    const getListStore = () => {
+    const getListStore = (page) => {
         let params = {
-            page: pageIndex,
+            page: page,
             maxItems: 25
         }
         dispatch({
@@ -71,32 +77,81 @@ const Store = () => {
         })
     }
 
+    const onLoadMore = (currentPage) => {
+        setPageIndex(currentPage);
+        getListStore(currentPage);
+
+    }
+
     useEffect(() => {
-        if (data == null && loading) {
-            getListStore();
-        }
-    }, [data])
+        getListStore(pageIndex);
+    }, [])
+
+
 
     // === RENDER ===
+    const renderHeaderTable = () => {
+        return (
+            <Grid container spacing={3} direction={'column'} className={classes.conHeaderTable}>
+                <Grid item>
+                    <Typography variant='h4' color={'primary'}>{'Store Manager'}</Typography>
+                </Grid>
+                <Grid item container direction={'row'}>
+                    <Grid item container spacing={2} xs={6} alignItems={'center'}>
+                        <Grid item>
+                            <InputBase sx={{ ml: 1, flex: 1 }}
+                                className={classes.btnSearch}
+                                placeholder='Search'
+                                inputProps={{ 'aria-label': 'search' }}
+                                endAdornment={
+                                    <InputAdornment position='end'>
+                                        <IconButton type='button'>
+                                            <SearchIcon />
+                                        </IconButton>
+                                    </InputAdornment>
+                                } />
+                        </Grid>
+                    </Grid>
+                    <Grid item xs={6} display={'flex'} flexDirection={'row'} justifyContent={'flex-end'}>
+                        <Button color='primary' className={classes.btnAction} onClick={() => setOpenAddModal(true)}>
+                            <AddIcon />
+                        </Button>
+                        <Button className={classes.btnAction}>
+                            <ExpandMoreIcon />
+                        </Button>
+                    </Grid>
+                </Grid>
+            </Grid>
+        )
+    }
     const renderAction = (cell) => {
         return (
-            <Box>
-
+            <Box display={'flex'} alignItems={'center'} justifyContent={'space-evenly'}>
+                <Button variant="contained" className={`${classes.actionBtn} ${classes.detailBtn}`}
+                    startIcon={
+                        <FontAwesomeIcon icon={faCircleInfo} className={classes.iconButton} />
+                    }>
+                    Detail
+                </Button>
+                <Button variant='contained' className={`${classes.actionBtn} ${classes.disableBtn}`}
+                    startIcon={
+                        <FontAwesomeIcon icon={faBan} className={classes.iconButton} />
+                    }>
+                    Disable
+                </Button>
             </Box>
         )
     }
     const renderStatus = (dataCell) => {
-
         if (dataCell.cell?.status) {
             let status = dataCell.cell.status
 
             // find status default by key
             let statusDisplay = defaultStatusColor.find(item => item.key == status.key);
-
             //TODO handle status
             return (
                 <Box>
-                    <Typography>{status.nameVi}</Typography>
+                    <Chip label={status.nameVi} className={statusDisplay.color} />
                 </Box>
             )
         }
@@ -104,23 +159,15 @@ const Store = () => {
     const renderPageContent = () => {
         return (
             <Grid container spacing={3} className={classes.conContent}>
-                <Grid item xs={10}>
+                <Grid item xs={12}>
                     <CTable
                         dataTable={dataTable}
                         totalPage={data?.totalItems}
                         page={pageIndex}
                         rowPerPages={data?.pageSize}
                         tableTitle='Store Manager'
-                        action={{
-                            addNew: () => {
-                                setOpenAddModal(true)
-                            }
-                        }} />
-                </Grid>
-                <Grid item>
-                    <Box>
-                        <Typography>Fiter</Typography>
-                    </Box>
+                        header={renderHeaderTable}
+                        onLoadMore={onLoadMore} />
                 </Grid>
             </Grid>
         )

@@ -26,5 +26,6 @@
     "news_manager": "New Manager",
     "account_menu_profile": "Profile",
     "account_menu_logout": "Logout",
-    "search_label": "Search"
+    "search_label": "Search",
+    "product_category": "Product Category"
 }
